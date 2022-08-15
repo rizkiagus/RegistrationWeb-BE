@@ -17,6 +17,7 @@ class Siswa extends Model
         'tempat_lahir',
         'agama',
         'alamat',
+        'email',
         'sekolah_asal',
         'pass_foto',
         'status_bayar',

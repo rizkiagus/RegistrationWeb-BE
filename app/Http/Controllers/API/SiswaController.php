@@ -43,6 +43,33 @@ class SiswaController extends Controller
         }
     }
 
+    public function jurusantkr()
+    {
+        try {
+            $siswa = Siswa::where('jurusan', '=', 'SMK: Teknik Kendaraan Ringan')->where('status_bayar', '=', 'sudah bayar')->get()->count();
+            if ($siswa) {
+                return ApiFormatter::createApi(200, 'Success', $siswa);
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (\Throwable $th) {
+            return ApiFormatter::createApi(500, 'Success', $th);
+        }
+    }
+    public function jurusantkj()
+    {
+        try {
+            $siswa = Siswa::where('jurusan', '=', 'SMK: Teknik Komputer Jaringan')->where('status_bayar', '=', 'sudah bayar')->get()->count();
+            if ($siswa) {
+                return ApiFormatter::createApi(200, 'Success', $siswa);
+            } else {
+                return ApiFormatter::createApi(200, 'Success', $siswa);
+            }
+        } catch (\Throwable $th) {
+            return ApiFormatter::createApi(500, 'Internal Server Error', $th);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -69,6 +96,7 @@ class SiswaController extends Controller
                 'tempat_lahir' => 'required',
                 'agama' => 'required',
                 'alamat' => 'required',
+                'email' => 'required',
                 'sekolah_asal' => 'required',
                 'status_bayar' => 'required',
                 'pass_foto' => 'required',
@@ -83,6 +111,7 @@ class SiswaController extends Controller
                 'tempat_lahir' => $request->tempat_lahir,
                 'agama' => $request->agama,
                 'alamat' => $request->alamat,
+                'email' => $request->email,
                 'sekolah_asal' => $request->sekolah_asal,
                 'status_bayar' => $request->status_bayar,
                 'pass_foto' => $request->pass_foto,
@@ -102,12 +131,13 @@ class SiswaController extends Controller
 
             $params = array(
                 'transaction_details' => array(
-                    'order_id' => $siswa->id,
+                    'order_id' => rand(),
                     'gross_amount' => 385000,
                 ),
                 'customer_details' => array(
                     'first_name' => $siswa->nama,
                     'last_name' => '',
+                    'email' => $siswa->email,
                     'phone' => $siswa->telp,
                 ),
             );

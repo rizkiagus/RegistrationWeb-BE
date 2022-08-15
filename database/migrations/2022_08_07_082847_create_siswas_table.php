@@ -21,6 +21,7 @@ class CreateSiswasTable extends Migration
             $table->string('tempat_lahir', 50);
             $table->string('agama', 20);
             $table->string('alamat', 256);
+            $table->string('email', 256);
             $table->string('sekolah_asal', 50);
             $table->longText('pass_foto');
             $table->string('status_bayar', 256);
