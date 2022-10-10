@@ -27,6 +27,7 @@ class CreateSiswasTable extends Migration
             $table->string('status_bayar', 256);
             $table->string('telp', 15);
             $table->string('jurusan', 50);
+            $table->string('tahun_ajaran', 50);
             $table->timestamps();
         });
     }

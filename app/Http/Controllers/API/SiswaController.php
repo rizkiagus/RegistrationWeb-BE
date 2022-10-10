@@ -101,7 +101,8 @@ class SiswaController extends Controller
                 'status_bayar' => 'required',
                 'pass_foto' => 'required',
                 'telp' => 'required',
-                'jurusan' => 'required'
+                'jurusan' => 'required',
+                'tahun_ajaran' => 'required'
             ]);
 
             $siswa = Siswa::create([
@@ -116,7 +117,8 @@ class SiswaController extends Controller
                 'status_bayar' => $request->status_bayar,
                 'pass_foto' => $request->pass_foto,
                 'telp' => $request->telp,
-                'jurusan' => $request->jurusan
+                'jurusan' => $request->jurusan,
+                'tahun_ajaran' => $request->tahun_ajaran,
             ]);
 
 

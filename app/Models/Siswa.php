@@ -22,7 +22,8 @@ class Siswa extends Model
         'pass_foto',
         'status_bayar',
         'telp',
-        'jurusan'
+        'jurusan',
+        'tahun_ajaran'
     ];
 
     protected $hidden = [];
