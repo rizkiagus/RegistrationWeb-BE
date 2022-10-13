@@ -33,6 +33,7 @@ Route::post('daftar', [SiswaController::class, 'store']);
 Route::get('siswa/detail/{id}', [SiswaController::class, 'siswabyid']);
 Route::get('siswa/jurusantkr', [SiswaController::class, 'jurusantkr']);
 Route::get('siswa/jurusantkj', [SiswaController::class, 'jurusantkj']);
+Route::get('siswa/tahunajaran/{tahun}', [SiswaController::class, 'getDataByTahun']);
 
 
 //API ORANGTUA

@@ -63,13 +63,24 @@ class SiswaController extends Controller
             if ($siswa) {
                 return ApiFormatter::createApi(200, 'Success', $siswa);
             } else {
-                return ApiFormatter::createApi(200, 'Success', $siswa);
+                return ApiFormatter::createApi(400, 'Failed', $siswa);
             }
         } catch (\Throwable $th) {
             return ApiFormatter::createApi(500, 'Internal Server Error', $th);
         }
     }
-
+    public function getDataByTahun($tahun){
+        try{
+            $siswa = Siswa::where('tahun_ajaran', '=', $tahun)->where('status_bayar', '=', 'sudah bayar')->get();
+            if ($siswa) {
+                return ApiFormatter::createApi(200, 'Success', $siswa);
+            } else {
+                return ApiFormatter::createApi(400, 'Failed', $siswa);
+            }
+        } catch (\Throwable $th) {
+            return ApiFormatter::createApi(500, 'Internal Server Error', $th);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
