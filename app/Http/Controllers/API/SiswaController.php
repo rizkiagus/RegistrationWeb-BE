@@ -71,22 +71,21 @@ class SiswaController extends Controller
     }
     public function getDataByTahun($tahun){
         try{
-            if($tahun !== "semua"){
+            if($tahun !== 'semua'){
                 $siswa = Siswa::where('tahun_ajaran', '=', $tahun)->where('status_bayar', '=', 'sudah bayar')->get();
                 if ($siswa) {
                     return ApiFormatter::createApi(200, 'Success', $siswa);
                 } else {
                     return ApiFormatter::createApi(400, 'Failed', $siswa);
                 }
-            } else {
-                $siswa = Siswa::where('status_bayar', '=', 'sudah bayar')->get();
-                if ($siswa) {
-                    return ApiFormatter::createApi(200, 'Success', $siswa);
-                } else {
-                    return ApiFormatter::createApi(400, 'Failed', $siswa);
-                }
-                
             }
+            $siswa = Siswa::where('status_bayar', '=', 'sudah bayar')->get();
+            if ($siswa) {
+                return ApiFormatter::createApi(200, 'Success', $siswa);
+            } else {
+                return ApiFormatter::createApi(400, 'Failed', $siswa);
+            }
+                
         } catch (\Throwable $th) {
             return ApiFormatter::createApi(500, 'Internal Server Error', $th);
         }
